@@ -34,3 +34,4 @@ def saveBeforeAfterImages(before_img, before_text, after_img, after_text,path):
     figure.savefig(path, bbox_inches='tight',
                    transparent=True,
                    pad_inches=0)
+    plt.close(figure)

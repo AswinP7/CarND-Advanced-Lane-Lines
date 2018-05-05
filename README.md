@@ -22,8 +22,8 @@ My project includes the following files:
 
 [//]: # (Image References)
 
-[image1]: ./readme_images/4_undistorted.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
+[image1]: ./output_images/1_undistorted.png "Undistorted"
+[image2]: ./output_images/2_undistorted.png "Road Undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
@@ -40,10 +40,9 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 ![alt text][image1]
 
-### Pipeline (single images)
+# Pipeline (single images)
 
-#### 1. Provide an example of a distortion-corrected image.
-
+## Example of a distortion-corrected image.
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
