@@ -24,7 +24,19 @@ My project includes the following files:
 
 [image1]: ./output_images/1_undistorted.png "Undistorted"
 [image2]: ./output_images/2_undistorted.png "Road Undistorted"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
+[image3a]: ./output_images/thresholded1.jpg "Thresholded Road Straigt Difficult"
+[image3b]: ./output_images/thresholded2.jpg "Thresholded Road Straigt Difficult "
+[image3c]: ./output_images/thresholded3.jpg "ThresholdedRoad Curve Right"
+[image3d]: ./output_images/thresholded5.jpg "ThresholdedRoad Curve Left"
+[image3e]: ./output_images/thresholded7.jpg "ThresholdedRoad Straigt"
+
+[image4a]: ./output_images/warped1.jpg "Warped Road Straigt Difficult"
+[image4b]: ./output_images/warped2.jpg "Warped Road Straigt Difficult "
+[image4c]: ./output_images/warped3.jpg "Warped Road Curve Right"
+[image4d]: ./output_images/warped5.jpg "Warped Road Curve Left"
+[image4e]: ./output_images/wapred7.jpg "Warped Road Straigt"
+
+
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
@@ -46,13 +58,17 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+## Used color transforms, gradients or other methods to create a thresholded binary image. 
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step. 
 
-![alt text][image3]
+![alt text][image3a]
+![alt text][image3b]
+![alt text][image3c]
+![alt text][image3d]
+![alt text][image3e]
 
-#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+## Perspective transform and provide an example of a transformed image.
 
 The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
@@ -80,7 +96,11 @@ This resulted in the following source and destination points:
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image4a]
+![alt text][image4b]
+![alt text][image4c]
+![alt text][image4d]
+![alt text][image4e]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 

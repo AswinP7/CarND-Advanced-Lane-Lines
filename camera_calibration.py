@@ -35,11 +35,14 @@ def calibrateCameraFromDir(path):
 
 def cachedCalibrateCameraFromDir(path):
     pickle_file = path + "/calibration_pickle.p"
+    print(pickle_file)
     if os.path.isfile(pickle_file):
+        print("pickle file exists.")
         with open(pickle_file, "rb") as f:
             dist_pickle = pickle.load(f)
         return dist_pickle["ret"], dist_pickle["mtx"],  dist_pickle["dist"], dist_pickle["rvecs"], dist_pickle["tvecs"]
     else:
+        print("pickle file does not exist.")
         ret, mtx, dist, rvecs, tvecs = calibrateCameraFromDir(path)
         # Save the camera calibration result for later use
         dist_pickle = {}
