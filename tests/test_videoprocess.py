@@ -20,9 +20,17 @@ class TestVideo(unittest.TestCase):
     def test_ident(self):
         uut.process(VIDEO_CLIP,TEST_OUT_DIR+"/project_video.mp4",cb,subC=(3,6))
     
-    def test_pipe(self):
+    def test_pipe_project(self):
         p = pipeline.Pipeline()
-        uut.process(VIDEO_CLIP,TEST_OUT_DIR+"/L_project_video.mp4",p.process)#),subC=(0,5))
+        uut.process(VIDEO_CLIP,TEST_OUT_DIR+"/L_project_video.mp4",p.process)#,subC=(0,15))
+
+    def test_pipe_challenge(self):
+        p = pipeline.Pipeline()
+        uut.process(VIDEO_CLIP,TEST_OUT_DIR+"/L_challenge_video.mp4",p.process)#,subC=(0,15))
+
+    def test_pipe_harder_challenge(self):
+        p = pipeline.Pipeline()
+        uut.process(VIDEO_CLIP,TEST_OUT_DIR+"/L_harder_challenge_video.mp4",p.process)#,subC=(0,15))
 
 def cb(img) :
     return img

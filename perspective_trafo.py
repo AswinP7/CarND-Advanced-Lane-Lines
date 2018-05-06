@@ -18,7 +18,25 @@ class PerspectiveTrafo:
             [1080,0],
             [1080,720]])
             
-    def __init__(self, src=DEFAULT_SRC, dst=DEFAULT_DST, img_size=(1300,1300)):
+    def __init__(self, img_size=(1300,1300)):
+        src = np.float32(
+                         [[(img_size[0] / 2) - 62, img_size[1] / 2 + 100],
+                          [((img_size[0] / 6) - 10), img_size[1]],
+                          [(img_size[0] * 5 / 6) + 60, img_size[1]],
+                          [(img_size[0] / 2 + 62), img_size[1] / 2 + 100]])
+            
+        dst = np.float32(
+                       [[(img_size[0] / 4), 0],
+                        [(img_size[0] / 4), img_size[1]],
+                        [(img_size[0] * 3 / 4), img_size[1]],
+                        [(img_size[0] * 3 / 4), 0]])
+                        
+        print ("src")
+        print (src)
+                           
+        print ("dst")
+        print (dst)
+                        
         self.M = cv2.getPerspectiveTransform(src,dst)
         self.Minv = cv2.getPerspectiveTransform(dst,src)
         self.img_size = img_size
