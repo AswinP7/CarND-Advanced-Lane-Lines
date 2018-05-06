@@ -1,7 +1,6 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 # The Project
----
 The goals / steps of this project are the following:
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
@@ -17,9 +16,20 @@ The goals / steps of this project are the following:
 
 My project includes the following files:
 * [README.md](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/README.md) (writeup report) documentation of the results 
+* [pipeline.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/pipeline.py) contains the pipeline for lane line detection
 * [camera_calibration.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/camera_calibration.py) code for calibration of the camera
-* [threshold.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/threshold.py)
-* [pipeline.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/pipeline.py)
+* [undistorter.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/undistorter.py) code for correction of distortion
+* [threshold.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/threshold.py) code for calculation of thresholds
+* [perspective_trafo.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/threshold.py) code for perspective transformation
+* [lanefinder.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/lanefinder.py) code for finding and drawing lane lines
+* [curvatuere.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/curvature.py) code for calculation of curvature and the position of the car within the lane lines
+* [image_util.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/image_util.py) code for loading and saving images and for calculation of the visalization of original and processed images.
+* [project video result](./output_images/L_project_video.mp4)
+* [challenge video result](./output_images/L_challenge_video.mp4)
+* [lharder challenge video result](./output_images/L_harder_challenge_video.mp4)
+
+
+
 
 
 [//]: # (Image References)
@@ -57,7 +67,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 ![alt text][image1]
 
 # Pipeline (single images)
-The pipeline is implemented in [pipeline.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/pipeline.py)
+The pipeline for single images is implemented in [pipeline.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/pipeline.py)
 
 ## Example of a distortion-corrected image.
 The following image demonstrates the distortion corextion to a road image:
@@ -76,7 +86,7 @@ I used a combination of color and gradient thresholds to generate a binary image
 
 ## Perspective transform
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warp()`, which appears in file [perspective_trafo.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/perspective_trafo.py).  The `warp()` function takes as inputs an image (`img`), and runs `cv2.warpPerspective()` using the follwing source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
 ```python
 src = np.float32(
@@ -111,13 +121,14 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ## Identifying lane-line pixels and fitting their positions with a polynomial
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+The detection of lane-lines starts with searching for peaks in the histogramm in the bottom part of the thresholded and warped images. The identified peaks are used as the starting point for following the line using the sliding window approach. ([lanefinder.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/lanefinder.py), function `findLanes1st()`.
+After the initial line is detected, we can continue searching for the new location of the lane line starting in the area where the current line was detected.  ([lanefinder.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/lanefinder.py), function `findLanesNext()`
 
 ![alt text][image5]
 
 ## Calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in functions curvature and lanepos in [curvature.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/curvature.py)
+I did this in functions `curvature()` and `lanepos()` in [curvature.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/curvature.py)
 
 ## Example image of result plotted back down onto the road such that the lane area is identified clearly.
 
@@ -125,9 +136,9 @@ I implemented this step in lines 40 to 48 in my code in [pipeline.py](https://gi
 
 ![alt text][image6]
 
----
 
 # Pipeline (video)
+The creation of the final video is implemented in [videoprocess.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/videoprocess.py)
 
 ## Final video output
 
@@ -135,13 +146,17 @@ I implemented this step in lines 40 to 48 in my code in [pipeline.py](https://gi
 * Here's a [link to my challenge video result](./output_images/L_challenge_video.mp4)
 * Here's a [link to my harder challenge video result](./output_images/L_harder_challenge_video.mp4)
 
----
 
 # Discussion
+During the implementation of this project I found it very useful to make use of python unittests in order to test the code and in order to calculate and evaluate differnt parameters, e.g. in the context of thresholding. 
+The chosen approach worked pretty well for all three test videos. However, it had some problems in case the surface of the street changes, there is much shadow on the road, lane lines are missing, etc. 
 
-## 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Improvements could be:
+* consider provious polynoms that were fitted onto the lane lines in order to smoothen lane line detection
+* add sanity checks that kick out values that do nor make sense. In that case the previous polynoms could be reused.
+* the values of the curvature and the position of the car are hardly readable since they change so often. Less frequent update of the values and calculation of the average over several frames of the video could help.
+* In order to reduce effort for calculation of the thresholds, etc. the images reduced to the area of interest (the street only)
+* There might be a better values for min and max thresholds of the threshold calculation. More finetuning might produce even better results. 
 
 
 
