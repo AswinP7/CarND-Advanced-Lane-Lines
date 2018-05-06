@@ -22,7 +22,7 @@ class TestPipeline(unittest.TestCase):
         imgs = image_util.loadImagesRGB(IMG_DIR)
         for i,img in enumerate(imgs):
             processed_img = p.process(img)
-            image_util.saveBeforeAfterImages(img,"Original", processed_img,"Warped and Thresholded", TEST_OUT_DIR+"/warped"+str(i)+".jpg")
+            image_util.saveBeforeAfterImages(img,"Original", processed_img,"Result of Pipeline", TEST_OUT_DIR+"/pipeline"+str(i)+".jpg")
 
 if __name__ == '__main__':
     unittest.main()

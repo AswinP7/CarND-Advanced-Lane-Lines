@@ -36,12 +36,12 @@ My project includes the following files:
 [image4b]: ./output_images/warped2.jpg "Warped Road Straigt Difficult "
 [image4c]: ./output_images/warped3.jpg "Warped Road Curve Right"
 [image4d]: ./output_images/warped5.jpg "Warped Road Curve Left"
-[image4e]: ./output_images/wapred7.jpg "Warped Road Straigt"
+[image4e]: ./output_images/warped7.jpg "Warped Road Straigt"
 
 
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image6]: ./output_images/pipeline5.jpg "Output"
 [video1]: ./output_images//L_project_video.mp4 "Video"
 [video2]: ./output_images//L_challenge_video.mp4 "Challenge Video"
 [video3]: ./output_images//L_harder_challenge_video.mp4 "Harder Challenge Video"
@@ -115,21 +115,21 @@ Then I did some other stuff and fit my lane lines with a 2nd order polynomial ki
 
 ![alt text][image5]
 
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+## Calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this in functions curvature and lanepos in [curvature.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/curvature.py)
 
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+## Example image of result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in lines 40 to 48 in my code in [pipeline.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/pipeline.py) and in [lanefinder.py](https://github.com/MarkBroerkens/CarND-Advanced-Lane-Lines/blob/master/lanefinder.py)  in the function `draw()`.  Here is an example of my result on a test image:
 
 ![alt text][image6]
 
 ---
 
-### Pipeline (video)
+# Pipeline (video)
 
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+## Final video output
 
 Here's a [link to my project video result](./output_images/L_project_video.mp4)
 Here's a [link to my challenge video result](./output_images/L_challenge_video.mp4)
@@ -137,9 +137,9 @@ Here's a [link to my harder challenge video result](./output_images/L_harder_cha
 
 ---
 
-### Discussion
+# Discussion
 
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+## 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
 
