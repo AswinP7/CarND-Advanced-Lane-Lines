@@ -28,8 +28,8 @@ class Pipeline:
         combined = np.zeros_like(dir_binary)
         combined[((gradx == 1) & (grady == 1)) | ((mag_binary == 1) & (dir_binary == 1)) | (s_binary == 1)] = 1
         
-        #img = np.array(combined*255, dtype=np.uint8)
-        #img = cv2.cvtColor(img ,cv2.COLOR_GRAY2RGB)
+        #combined2 = np.array(combined*255, dtype=np.uint8)
+        #combined2 = img = cv2.cvtColor(combined2 ,cv2.COLOR_GRAY2RGB)
         
         # perspective transformation
         img = self.perspectiveTrafo.warp(combined)

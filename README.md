@@ -131,9 +131,9 @@ I implemented this step in lines 40 to 48 in my code in [pipeline.py](https://gi
 
 ## Final video output
 
-Here's a [link to my project video result](./output_images/L_project_video.mp4)
-Here's a [link to my challenge video result](./output_images/L_challenge_video.mp4)
-Here's a [link to my harder challenge video result](./output_images/L_harder_challenge_video.mp4)
+* Here's a [link to my project video result](./output_images/L_project_video.mp4)
+* Here's a [link to my challenge video result](./output_images/L_challenge_video.mp4)
+* Here's a [link to my harder challenge video result](./output_images/L_harder_challenge_video.mp4)
 
 ---
 
