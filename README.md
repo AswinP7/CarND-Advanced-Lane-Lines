@@ -159,4 +159,8 @@ Improvements could be:
 * There might be a better values for min and max thresholds of the threshold calculation. More finetuning might produce even better results. 
 
 
-
+# Further Reading
+Please, the links below can be of great help for more information on camera calibration:
+* [Camera Calibration and 3D Reconstruction](https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html)
+* [Camera calibration With OpenCV](https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html)
+* [Camera Calibration](https://docs.opencv.org/3.1.0/dc/dbb/tutorial_py_calibration.html)
